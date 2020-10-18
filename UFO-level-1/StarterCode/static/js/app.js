@@ -6,6 +6,7 @@ var tbody = d3.select("tbody");
 
 // function to build table display
 function displayData(ufoData) {
+//reference to the table body
     tbody.html("");
     ufoData.forEach((ufoRecord) => {
         var row = tbody.append("tr");
@@ -19,16 +20,20 @@ function displayData(ufoData) {
 //initial table display
 displayData(tableData);
 
-// select filter button 
-//var button = d3.select("#filter-btn");
-//button click
-//button.on("click", function() {
-    //d3.event.preventDefault();
-    //tbody.selectAll('*').remove();
-    //var inputDate = d3.select("#datetime");
-    //var inputValue = inputDate.property("value");
-    //console.log(inputValue);
-    //var filteredData = tableData.filter(x => x.datetime === inputValue);
-    //console.log(filteredData);
+//select user input  
+var inputDate = d3.select("#datetime")
+var button = d3.select("#filter-btn")
 
-//}
+// function to filter by date and time
+function handleClick(){
+//prevent refresh
+    d3.event.preventDefault();
+
+    console.log(inputDate.property("value"));
+//build new table with filter
+    var filteredData = tableData.filter(row => row.datetime === inputDate.property("value"))
+    displayData(filteredData);    
+}
+    
+//button click
+d3.selectAll("#filter-btn").on("click", handleClick);
