@@ -32,7 +32,8 @@ function handleClick(){
     console.log(inputDate.property("value"));
 //build new table with filter
     var filteredData = tableData.filter(row => row.datetime === inputDate.property("value"))
-    displayData(filteredData);    
+    console.log(filteredData);   
+    displayData(filteredData);
 }
     
 //button click
